@@ -1,17 +1,13 @@
-// Mini store sem framework — Capítulo 9
-
+// src/store/index.js — mini store sem framework (cap-09)
 function criarStore(estadoInicial) {
   let estado = { ...estadoInicial }
   const ouvintes = new Set()
-
   return {
     getState: () => ({ ...estado }),
-
     setState: (mudancas) => {
       estado = { ...estado, ...mudancas }
       ouvintes.forEach(fn => fn(estado))
     },
-
     subscribe: (fn) => {
       ouvintes.add(fn)
       return () => ouvintes.delete(fn)
