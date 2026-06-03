@@ -8,55 +8,21 @@
 <body>
   <header class="header">
     <h1>DevFeed</h1>
-    <span id="contagem-links" class="contagem"></span>
-    <div class="header-actions">
-      <input
-        id="busca"
-        type="search"
-        placeholder="Buscar links..."
-        autocomplete="off"
-      />
-      <button id="btn-adicionar">+ Adicionar</button>
-    </div>
+    <span id="contagem-links"></span>
+    <input id="busca" type="search" placeholder="Buscar..." autocomplete="off" />
+    <button id="btn-adicionar">+ Adicionar</button>
   </header>
-
   <aside class="sidebar">
-    <div class="filtros">
-      <p class="filtros-titulo">Tags</p>
-      <ul id="lista-tags"></ul>
-      <button id="limpar-filtro" hidden>Limpar filtro</button>
-    </div>
+    <p class="filtros-titulo">Tags</p>
+    <ul id="lista-tags"></ul>
+    <button id="limpar-filtro" hidden>Limpar filtro</button>
   </aside>
-
   <main class="main">
-    <div id="spinner" hidden class="spinner">Carregando...</div>
-    <div id="erro-banner" hidden class="erro-banner"></div>
-    <ul id="lista-links" class="lista-links"></ul>
-    <p id="sem-resultados" hidden class="sem-resultados">Nenhum link encontrado.</p>
+    <div id="spinner" hidden>Carregando...</div>
+    <div id="erro-banner" hidden></div>
+    <ul id="lista-links"></ul>
+    <p id="sem-resultados" hidden>Nenhum link encontrado.</p>
   </main>
-
-  <dialog id="modal-adicionar" class="modal">
-    <form id="form-adicionar" method="dialog">
-      <h2>Adicionar link</h2>
-      <label>
-        URL
-        <input name="url" type="url" required placeholder="https://..." />
-      </label>
-      <label>
-        Titulo
-        <input name="title" type="text" required placeholder="Titulo do link" />
-      </label>
-      <label>
-        Tags (separadas por virgula)
-        <input name="tags" type="text" placeholder="javascript, web, ferramentas" />
-      </label>
-      <div class="form-actions">
-        <button type="button" id="btn-cancelar">Cancelar</button>
-        <button type="submit">Salvar</button>
-      </div>
-    </form>
-  </dialog>
-
   <script type="module" src="/main.js"></script>
 </body>
 </html>
