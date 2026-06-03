@@ -1,5 +1,14 @@
 // Ponto de entrada — orquestra todos os modulos
 import './style.css'
+
+// Registrar Service Worker (cap-14)
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(reg => console.log('SW registrado:', reg.scope))
+      .catch(err => console.warn('SW falhou:', err))
+  })
+}
 import { store } from './src/store/index.js'
 import { storage } from './src/services/storage.js'
 import { api } from './src/services/api.js'
