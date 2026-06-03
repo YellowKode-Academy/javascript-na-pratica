@@ -1,7 +1,7 @@
 // main.js — ponto de entrada com módulos ES (cap-04)
 import './style.css'
 import { addLink, removeLink } from './src/data/links.js'
-import { filtrarLinks, extrairTodasTags } from './src/data/filters.js'
+import { filtrarLinks, extrairTodasTags, ordenarLinks } from './src/data/filters.js'
 import { renderizarLinks } from './src/ui/render.js'
 
 const LINKS_INICIAIS = [
