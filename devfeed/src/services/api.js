@@ -7,6 +7,10 @@ class ApiError extends Error {
     this.name = 'ApiError'
     this.status = status
   }
+  get isClientError()  { return this.status >= 400 && this.status < 500 }
+  get isServerError()  { return this.status >= 500 }
+  get isNotFound()     { return this.status === 404 }
+  get isUnauthorized() { return this.status === 401 }
 }
 
 class NetworkError extends Error {
