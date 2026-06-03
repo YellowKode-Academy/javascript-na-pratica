@@ -1,4 +1,4 @@
-// Persistência com localStorage — Capítulo 11
+// src/services/storage.js — localStorage com sincronizacao entre abas (cap-11)
 import { store } from '../store/index.js'
 
 const CHAVES = {
@@ -13,11 +13,10 @@ export const storage = {
       localStorage.setItem(CHAVES.ultimaSync, new Date().toISOString())
       return true
     } catch (err) {
-      console.warn('Falha ao salvar links no localStorage:', err.message)
+      console.warn('Falha ao salvar links:', err.message)
       return false
     }
   },
-
   carregarLinks() {
     try {
       const raw = localStorage.getItem(CHAVES.links)
@@ -25,33 +24,22 @@ export const storage = {
       const parsed = JSON.parse(raw)
       return Array.isArray(parsed) ? parsed : []
     } catch {
-      console.warn('Links no localStorage corrompidos. Iniciando com lista vazia.')
+      console.warn('Links corrompidos. Iniciando com lista vazia.')
       localStorage.removeItem(CHAVES.links)
       return []
     }
   },
-
-  ultimaSync() {
-    return localStorage.getItem(CHAVES.ultimaSync)
-  },
-
-  limpar() {
-    Object.values(CHAVES).forEach(chave => localStorage.removeItem(chave))
-  }
+  ultimaSync: () => localStorage.getItem(CHAVES.ultimaSync),
+  limpar: () => Object.values(CHAVES).forEach(k => localStorage.removeItem(k))
 }
 
-// Sincronizar entre abas abertas — Capítulo 11
 if (typeof window !== 'undefined') {
   window.addEventListener('storage', e => {
-    if (e.key === CHAVES.links && e.newValue !== null) {
+    if (e.key === CHAVES.links && e.newValue) {
       try {
-        const linksAtualizados = JSON.parse(e.newValue)
-        if (Array.isArray(linksAtualizados)) {
-          store.setState({ links: linksAtualizados })
-        }
-      } catch {
-        // dado invalido vindo de outra aba, ignorar
-      }
+        const links = JSON.parse(e.newValue)
+        if (Array.isArray(links)) store.setState({ links })
+      } catch {}
     }
   })
 }
