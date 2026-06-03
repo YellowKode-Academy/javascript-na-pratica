@@ -1,6 +1,6 @@
 // public/sw.js — Service Worker (cap-14)
 const CACHE_NOME = 'devfeed-v1'
-const ASSETS = ['/', '/index.html', '/style.css', '/main.js']
+const ASSETS = ['/', '/index.html', '/offline.html']
 
 self.addEventListener('install', e => {
   e.waitUntil(
@@ -21,6 +21,9 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return
   e.respondWith(
-    caches.match(e.request).then(cached => cached || fetch(e.request))
+    caches.match(e.request).then(cached => {
+      if (cached) return cached
+      return fetch(e.request).catch(() => caches.match('/offline.html'))
+    })
   )
 })
