@@ -1,4 +1,10 @@
-# JavaScript na Prática — Repositório Companion
+﻿# JavaScript na Prática — Repositório Companion
+
+[![Capa do Livro](cover.jpg)](https://www.amazon.com.br/dp/B0GZGG6Q77)
+
+> **[Disponivel na Amazon.com.br](https://www.amazon.com.br/dp/B0GZGG6Q77)** — R$24,97
+
+---
 
 Código do livro **JavaScript na Prática** (Série Dev na Prática, Vol.1).
 
